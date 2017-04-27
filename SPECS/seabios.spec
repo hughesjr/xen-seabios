@@ -1,5 +1,5 @@
 Name:           seabios
-Version:        1.8.2
+Version:        1.10.0
 Release:        1%{?dist}
 Summary:        Open-source legacy BIOS implementation
 
@@ -9,6 +9,8 @@ URL:            http://www.coreboot.org/SeaBIOS
 # No source releases of seabios stable. To generate:
 # git clone git://git.seabios.org/seabios.git && cd seabios
 # R=%{version}; git archive --output seabios-$R.tar.gz --prefix seabios-$R/ rel-$R
+#
+# Or use get_sources.sh
 Source0:        http://code.coreboot.org/p/seabios/downloads/get/%{name}-%{version}.tar.gz
 
 BuildRequires: python iasl
@@ -84,6 +86,9 @@ install -m 0644 out/bios.bin $RPM_BUILD_ROOT%{_datadir}/seabios
 
 
 %changelog
+* Thu Apr 27 2017 George Dunlap <george.dunlap@citrix.com> - 1.10.0-1
+- Update to 1.10.0
+
 * Wed Jul 29 2015 George Dunlap <george.dunlap@citrix.com> - 1.8.2-100
 - Update to 1.8.2
 
