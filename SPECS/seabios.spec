@@ -1,17 +1,12 @@
 Name:           seabios
-Version:        1.10.0
-Release:        1%{?dist}
+Version:        1.11.1
+Release:        99%{?dist}
 Summary:        Open-source legacy BIOS implementation
 
 Group:          Applications/Emulators
 License:        LGPLv3
 URL:            http://www.coreboot.org/SeaBIOS
-# No source releases of seabios stable. To generate:
-# git clone git://git.seabios.org/seabios.git && cd seabios
-# R=%{version}; git archive --output seabios-$R.tar.gz --prefix seabios-$R/ rel-$R
-#
-# Or use get_sources.sh
-Source0:        http://code.coreboot.org/p/seabios/downloads/get/%{name}-%{version}.tar.gz
+Source0:        https://review.coreboot.org/cgit/seabios.git/snapshot/%{name}-rel-%{version}.tar.gz
 
 BuildRequires: python iasl
 ExclusiveArch: x86_64
@@ -51,7 +46,7 @@ that a typical x86 proprietary BIOS implements.
 
 
 %prep
-%setup -q
+%setup -q -n %{name}-rel-%{version}
 
 # Makefile changes version to include date and buildhost
 sed -i 's,VERSION=%{version}.*,VERSION=%{version},g' Makefile
@@ -86,6 +81,12 @@ install -m 0644 out/bios.bin $RPM_BUILD_ROOT%{_datadir}/seabios
 
 
 %changelog
+* Wed May 09 2018 Kevin Stange <kevin@steadfast.net> - 1.11.1-99
+- Update to 1.11.1
+
+* Mon Sep 11 2017 Johnny Hughes <johnny@centos.org> - 1.10.2-99
+- Update to 1.10.2
+
 * Thu Apr 27 2017 George Dunlap <george.dunlap@citrix.com> - 1.10.0-1
 - Update to 1.10.0
 
